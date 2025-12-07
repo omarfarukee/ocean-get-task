@@ -16,48 +16,50 @@ export default async function Dashboard() {
   });
   const data = await res.json();
   const user = data.data;
-  console.log(user);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="bg-slate-800 rounded-lg shadow-2xl p-8 border border-slate-700 text-center">
-          <h1 className="text-3xl font-bold text-white mb-8">Dashboard</h1>
+    <div className="min-h-screen bg-linear-to-br from-(--primary)/40 to-(--secondary)/20 flex items-center justify-center p-[1vw]">
+      <div className="w-full max-w-[30vw] bg-[rgba(0,0,0,0.5)] backdrop-blur-[0.3vw] rounded-[2vw] shadow-[0_0_1.5vw_rgba(0,0,0,0.5)] border border-(--primary) p-[2vw]">
+        <h1 className="text-[2.5vw] font-bold text-white mb-[1.5vw] text-center tracking-wide">
+          Dashboard
+        </h1>
 
-          <div className="mb-8">
-            <div className="relative w-32 h-32 mx-auto mb-6">
-              <Image
-                src={user.avatar}
-                width={128}
-                height={128}
-                alt="avatar"
-                className="rounded-full border-4 border-blue-600 object-cover"
-              />
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-2">
-              {user.first_name} {user.last_name}
-            </h2>
-            <p className="text-slate-400 text-sm">{user.email}</p>
+        {/* User info */}
+        <div className="mb-[1.5vw] flex flex-col items-center">
+          <div className="relative w-[8vw] h-[8vw] mb-[1vw]">
+            <Image
+              src={user.avatar}
+              width={128}
+              height={128}
+              alt="avatar"
+              className="rounded-full border-[0.4vw] border-(--primary) object-cover shadow-[0_0_0.5vw_rgba(0,0,0,0.5)]"
+            />
           </div>
-
-          <div className="space-y-3">
-            <div className="bg-slate-700 rounded-lg p-4">
-              <p className="text-slate-300 text-xs uppercase tracking-wider font-semibold">
-                Status
-              </p>
-              <p className="text-green-400 font-semibold mt-1">✓ Authenticated</p>
-            </div>
-          </div>
-
-          <form action={userLogout} className="mt-8">
-            <button
-              type="submit"
-              className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-200"
-            >
-              Sign Out
-            </button>
-          </form>
+          <h2 className="text-[1.5vw] font-bold text-white mb-[0.3vw]">
+            {user.first_name} {user.last_name}
+          </h2>
+          <p className="text-[0.9vw] text-slate-200">{user.email}</p>
         </div>
+
+        {/* Status Card */}
+        <div className="mb-[1.5vw] bg-[rgba(255,255,255,0.05)] border border-(--primary) rounded-[1vw] p-[1vw] text-center">
+          <p className="text-[0.7vw] text-(--primary) uppercase tracking-wider font-semibold">
+            Status
+          </p>
+          <p className="text-[0.9vw] text-green-400 font-bold mt-[0.3vw]">
+            ✓ Authenticated
+          </p>
+        </div>
+
+        {/* Sign out */}
+        <form action={userLogout} className="mt-[1vw]">
+          <button
+            type="submit"
+            className="w-full py-[0.8vw] px-[2vw] bg-(--secondary) hover:bg-(--primary) cursor-pointer font-semibold rounded-[1vw] transition duration-300 text-[0.9vw]"
+          >
+            Sign Out
+          </button>
+        </form>
       </div>
     </div>
   );
